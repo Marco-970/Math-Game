@@ -1,10 +1,11 @@
-﻿namespace Math_Game
+﻿namespace Math_Game.Enums
 {
     public enum MenuOptions
     {
         Sum,
         Subtraction,
         Multiplication,
-        Division
+        Division,
+        Records
     }
 }
