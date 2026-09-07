@@ -3,8 +3,10 @@ using Math_Game.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+[assembly: InternalsVisibleTo("MathGameTests")]
 
 namespace Math_Game.Application
 {
@@ -18,9 +20,13 @@ namespace Math_Game.Application
             _userInteractor = userInteractor;
             _questionGenerator = questionGenerator;
         }
-        public void StartGame(MenuOptions quizMode)
+        public void StartGame(Difficulty difficulty, MenuOptions quizMode)
         {
-            var _questions = _questionGenerator.Generate(quizMode);
+            List<Question> _questions = new List<Question>();
+            for(int i = 1; i <= 5; i++)
+            {
+                _questions.Add(_questionGenerator.Generate(difficulty, quizMode));
+            }
             int _points = 0;
             foreach(var _question in _questions)
             {

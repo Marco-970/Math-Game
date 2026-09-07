@@ -1,4 +1,6 @@
 ﻿using Math_Game.Enums;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("MathGameTests")]
 
 namespace Math_Game.Tools
 {
@@ -12,6 +14,8 @@ namespace Math_Game.Tools
         public void DisplayIncorrect(string result);
         public bool PromptForGameEnd();
         public void DisplayResults(List<int> results);
+        public void DisplayDifficulties();
+        public string PromptForDifficulty();
         public void Clear();
         public void Quit();
     }
@@ -33,6 +37,15 @@ namespace Math_Game.Tools
             }
             Console.WriteLine();
         }
+        public void DisplayDifficulties()
+        {
+            Console.WriteLine();
+            foreach (var option in Enum.GetNames<Difficulty>())
+            {
+                Console.WriteLine(option);
+            }
+            Console.WriteLine();
+        }
         public string PromptForOption()
         {
             string? userInput = null;
@@ -42,11 +55,25 @@ namespace Math_Game.Tools
                 Console.WriteLine("Choose from the list what type of game you want to play by selecting the option name.");
                 Console.WriteLine("");
                 userInput = Console.ReadLine();
-                isInputValid = _validator.ValidateEnum(userInput);
+                isInputValid = _validator.ValidateMenuOption(userInput);
             } while (!isInputValid);
             return userInput;
         }
-        
+
+        public string PromptForDifficulty()
+        {
+            string? userInput = null;
+            bool isInputValid;
+            do
+            {
+                Console.WriteLine("Choose the difficulty you prefer by selecting the option name.");
+                Console.WriteLine("");
+                userInput = Console.ReadLine();
+                isInputValid = _validator.ValidateDifficulty(userInput);
+            } while (!isInputValid);
+            return userInput;
+        }
+
         public void DisplayMessage(string message)
         {
             Console.WriteLine(message);

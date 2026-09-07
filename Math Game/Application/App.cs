@@ -1,5 +1,7 @@
 ﻿using Math_Game.Enums;
 using Math_Game.Tools;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("MathGameTests")]
 
 namespace Math_Game.Application
 {
@@ -21,21 +23,25 @@ namespace Math_Game.Application
 
         public void Run()
         {
+            Difficulty _userChoiceDifficulty;
+            MenuOptions _userChoiceMenu;
             _userInteractor.Clear();
-            _userInteractor.DisplayMessage("Welcome! Here are the types of the games. Each option will have 5 questions about that type of operation.");
+            _userInteractor.DisplayMessage("Welcome! Here are the various difficulties of the game.");
+            _userInteractor.DisplayDifficulties();
+            _userChoiceDifficulty = Enum.Parse<Difficulty>(_userInteractor.PromptForDifficulty());
+            _userInteractor.DisplayMessage("Here are the types of the games. Each option will have 5 questions about that type of operation.");
             _userInteractor.DisplayMenu();
-            MenuOptions _userChoice;
             do
             {
-                _userChoice = Enum.Parse<MenuOptions>(_userInteractor.PromptForOption());
-                if (_userChoice == MenuOptions.Records)
+                _userChoiceMenu = Enum.Parse<MenuOptions>(_userInteractor.PromptForOption());
+                if (_userChoiceMenu == MenuOptions.Records)
                 {
                     _userInteractor.DisplayResults(_gameResults.Results);
                     _userInteractor.DisplayMenu();
                 }
-            } while (_userChoice == MenuOptions.Records);
+            } while (_userChoiceMenu == MenuOptions.Records);
             _userInteractor.Clear();
-            _quiz.StartGame(_userChoice);
+            _quiz.StartGame(_userChoiceDifficulty, _userChoiceMenu);
             _gameResults.Results.Add(_quiz.Points);
             _isGameFinished = !_userInteractor.PromptForGameEnd();
         }

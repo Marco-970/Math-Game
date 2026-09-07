@@ -7,15 +7,16 @@ namespace Math_Game
     {
         static void Main(string[] args)
         {
+            IRandom _random = new RandomWrapper(new Random());
             IUserInteractor _userInteractor = new ConsoleUserInteractor(new Validator());
             GameResults _gameResults = new GameResults();
-            App app = new App(_userInteractor, new Quiz(_userInteractor, new QuestionGenerator()), _gameResults);
+            App app = new App(_userInteractor, new Quiz(_userInteractor, new QuestionGenerator(_random)), _gameResults);
 
             app.Run();
             bool _isGameFinished = app.IsGameFinished;
             while (!_isGameFinished)
             {
-                app = new App(_userInteractor, new Quiz(_userInteractor, new QuestionGenerator()), _gameResults);
+                app = new App(_userInteractor, new Quiz(_userInteractor, new QuestionGenerator(_random)), _gameResults);
                 app.Run();
                 _isGameFinished = app.IsGameFinished;
             }
