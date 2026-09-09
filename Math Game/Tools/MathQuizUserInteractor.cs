@@ -19,18 +19,20 @@ namespace Math_Game.Tools
             _console.DisplayMessage("");
             foreach(var option in Enum.GetNames<MenuOptions>())
             {
-                _console.DisplayMessage(option);
+                ColorChanger.WriteColored(ConsoleColor.Magenta, option);
             }
             _console.DisplayMessage("");
+            ColorChanger.Reset();
         }
         public void DisplayDifficulties()
         {
             _console.DisplayMessage("");
             foreach (var option in Enum.GetNames<Difficulty>())
             {
-                _console.DisplayMessage(option);
+                ColorChanger.WriteColored(ConsoleColor.Magenta, option);
             }
             _console.DisplayMessage("");
+            ColorChanger.Reset();
         }
         public string PromptForOption()
         {
@@ -68,7 +70,6 @@ namespace Math_Game.Tools
         public string PromptForAnswer()
         {
             string _userInput;
-            _console.DisplayMessage("-----------------------------");
             _console.WriteOnSameLine($"|        Your answer: {_userInput = _console.GetUserInput()}       |");
             return _userInput;
         }
@@ -102,7 +103,6 @@ namespace Math_Game.Tools
             '-.____________.-'
 ");
             ColorChanger.Reset();
-            _console.DisplayMessage("Press any key to continue to the next question.");
             ReadKey();
             Clear();
         }
@@ -126,7 +126,7 @@ namespace Math_Game.Tools
      :                              :
      |                              |
      |        .------------.        |
-     |       /              \       |
+     |       /   v     v    \       |
      |      /                \      |
      |     (                  )     |
      :                              :
@@ -136,7 +136,6 @@ namespace Math_Game.Tools
             '-.____________.-'
 ");
             ColorChanger.Reset();
-            _console.DisplayMessage("Press any key to continue to the next question.");
             ReadKey();
             Clear();
         }
@@ -151,12 +150,12 @@ namespace Math_Game.Tools
         public void DisplayResults(List<(int Points, double Time)> results)
         {
             _console.Clear();
-            _console.DisplayMessage("Today's Results:");
+            ColorChanger.WriteColored(ConsoleColor.Yellow, "Today's Results:");
             results
             .Select((result, i) => (result, i))
             .ToList()
-            .ForEach(result => _console.DisplayMessage
-            ($"| - Game n°{result.i + 1}: {result.result.Points} points. {result.result.Time} seconds. - |"));
+            .ForEach(result => ColorChanger.WriteColored
+            (ConsoleColor.DarkYellow, $"| - Game n°{result.i + 1}: {result.result.Points} points. {result.result.Time} seconds. - |"));
             ReadKey();
             _console.Clear();
         }
