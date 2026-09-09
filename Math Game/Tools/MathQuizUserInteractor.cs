@@ -1,4 +1,4 @@
-﻿using Math_Game.Enums;
+using Math_Game.Enums;
 using Tools;
 
 namespace Math_Game.Tools
