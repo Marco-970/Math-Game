@@ -3,7 +3,7 @@
 
 namespace Math_Game.Tools
 {
-    internal interface IUserInteractor
+    internal interface IMathQuizUserInteractor
     {
         public void DisplayMenu();
         public string PromptForOption();
@@ -16,6 +16,7 @@ namespace Math_Game.Tools
         public void DisplayDifficulties();
         public string PromptForDifficulty();
         public void Clear();
+        public void ReadKey();
         public void Quit();
     }
 }

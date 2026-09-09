@@ -13,11 +13,11 @@ namespace Math_Game.Application
 {
     internal class Quiz
     {
-        IUserInteractor _userInteractor;
+        IMathQuizUserInteractor _userInteractor;
         QuestionGenerator _questionGenerator;
         public int Points { get; private set; }
         public double Time { get; private set; }
-        public Quiz(IUserInteractor userInteractor, QuestionGenerator questionGenerator)
+        public Quiz(IMathQuizUserInteractor userInteractor, QuestionGenerator questionGenerator)
         {
             _userInteractor = userInteractor;
             _questionGenerator = questionGenerator;
