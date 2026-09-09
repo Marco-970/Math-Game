@@ -8,6 +8,6 @@ namespace Math_Game.Application
 {
     internal record GameResults
     {
-        public List<int> Results { get; set; } = new List<int>();
+        public List<(int Points, double Time)> Results { get; set; } = new List<(int, double)>();
     }
 }

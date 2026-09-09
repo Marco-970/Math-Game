@@ -406,9 +406,150 @@ namespace Math_Game.Application
             new Question("What's the result of 23760 ÷ 330?", "72"),
             new Question("What's the result of 26880 ÷ 336?", "80"),
         };
-        public static IEnumerable<Question> RandomQuestions = new List<Question>
+        public static IEnumerable<Question> RandomDifficultySumQuestions()
         {
-            
-        };
+            Random _random = new Random();
+            List<Question> _questions = new List<Question>();
+            for(int i = 0; i < 5; i++)
+            {
+                int difficulty = _random.Next(1, 4);
+                _questions.Add(difficulty switch
+                {
+                    1 => EasyQuestionsSum.ElementAt(_random.Next(EasyQuestionsSum.Count())),
+                    2 => MediumQuestionsSum.ElementAt(_random.Next(MediumQuestionsSum.Count())),
+                    3 => HardQuestionsSum.ElementAt(_random.Next(HardQuestionsSum.Count())),
+                });
+            }
+            return _questions;
+        }
+        public static IEnumerable<Question> RandomDifficultySubtractionQuestions()
+        {
+            Random _random = new Random();
+            List<Question> _questions = new List<Question>();
+            for (int i = 0; i < 5; i++)
+            {
+                int difficulty = _random.Next(1, 4);
+                _questions.Add(difficulty switch
+                {
+                    1 => EasyQuestionsSubtraction.ElementAt(_random.Next(EasyQuestionsSubtraction.Count())),
+                    2 => MediumQuestionsSubtraction.ElementAt(_random.Next(MediumQuestionsSubtraction.Count())),
+                    3 => HardQuestionsSubtraction.ElementAt(_random.Next(HardQuestionsSubtraction.Count())),
+                });
+            }
+            return _questions;
+        }
+        public static IEnumerable<Question> RandomDifficultyMultiplicationQuestions()
+        {
+            Random _random = new Random();
+            List<Question> _questions = new List<Question>();
+            for (int i = 0; i < 5; i++)
+            {
+                int difficulty = _random.Next(1, 4);
+                _questions.Add(difficulty switch
+                {
+                    1 => EasyQuestionsMultiplication.ElementAt(_random.Next(EasyQuestionsMultiplication.Count())),
+                    2 => MediumQuestionsMultiplication.ElementAt(_random.Next(MediumQuestionsMultiplication.Count())),
+                    3 => HardQuestionsMultiplication.ElementAt(_random.Next(HardQuestionsMultiplication.Count())),
+                });
+            }
+            return _questions;
+        }
+        public static IEnumerable<Question> RandomDifficultyDivisionQuestions()
+        {
+            Random _random = new Random();
+            List<Question> _questions = new List<Question>();
+            for (int i = 0; i < 5; i++)
+            {
+                int difficulty = _random.Next(1, 4);
+                _questions.Add(difficulty switch
+                {
+                    1 => EasyQuestionsDivision.ElementAt(_random.Next(EasyQuestionsDivision.Count())),
+                    2 => MediumQuestionsDivision.ElementAt(_random.Next(MediumQuestionsDivision.Count())),
+                    3 => HardQuestionsDivision.ElementAt(_random.Next(HardQuestionsDivision.Count())),
+                });
+            }
+            return _questions;
+        }
+
+        internal static IEnumerable<Question> EasyDifficultyMixedQuestions()
+        {
+            Random _random = new Random();
+            List<Question> _questions = new List<Question>();
+            for (int i = 0; i < 5; i++)
+            {
+                int _mode = _random.Next(1, 5);
+                _questions.Add(_mode switch
+                {
+                    1 => EasyQuestionsSum.ElementAt(_random.Next(EasyQuestionsSum.Count())),
+                    2 => EasyQuestionsSubtraction.ElementAt(_random.Next(EasyQuestionsSubtraction.Count())),
+                    3 => EasyQuestionsMultiplication.ElementAt(_random.Next(EasyQuestionsMultiplication.Count())),
+                    4 => EasyQuestionsDivision.ElementAt(_random.Next(EasyQuestionsDivision.Count())),
+                });
+            }
+            return _questions;
+        }
+
+        internal static IEnumerable<Question> MediumDifficultyMixedQuestions()
+        {
+            Random _random = new Random();
+            List<Question> _questions = new List<Question>();
+            for (int i = 0; i < 5; i++)
+            {
+                int _mode = _random.Next(1, 5);
+                _questions.Add(_mode switch
+                {
+                    1 => MediumQuestionsSum.ElementAt(_random.Next(MediumQuestionsSum.Count())),
+                    2 => MediumQuestionsSubtraction.ElementAt(_random.Next(MediumQuestionsSubtraction.Count())),
+                    3 => MediumQuestionsMultiplication.ElementAt(_random.Next(MediumQuestionsMultiplication.Count())),
+                    4 => MediumQuestionsDivision.ElementAt(_random.Next(MediumQuestionsDivision.Count())),
+                });
+            }
+            return _questions;
+        }
+
+        internal static IEnumerable<Question> HardDifficultyMixedQuestions()
+        {
+            Random _random = new Random();
+            List<Question> _questions = new List<Question>();
+            for (int i = 0; i < 5; i++)
+            {
+                int _mode = _random.Next(1, 5);
+                _questions.Add(_mode switch
+                {
+                    1 => HardQuestionsSum.ElementAt(_random.Next(HardQuestionsSum.Count())),
+                    2 => HardQuestionsSubtraction.ElementAt(_random.Next(HardQuestionsSubtraction.Count())),
+                    3 => HardQuestionsMultiplication.ElementAt(_random.Next(HardQuestionsMultiplication.Count())),
+                    4 => HardQuestionsDivision.ElementAt(_random.Next(HardQuestionsDivision.Count())),
+                });
+            }
+            return _questions;
+        }
+
+        internal static IEnumerable<Question> RandomDifficultyMixedQuestions()
+        {
+            Random _random = new Random();
+            List<Question> _questions = new List<Question>();
+            for (int i = 0; i < 5; i++)
+            {
+                int _mode = _random.Next(1, 5);
+                int _difficulty = _random.Next(1, 4);
+                _questions.Add((_mode, _difficulty) switch
+                {
+                    (1, 1) => EasyQuestionsSum.ElementAt(_random.Next(EasyQuestionsSum.Count())),
+                    (1, 2) => MediumQuestionsSum.ElementAt(_random.Next(MediumQuestionsSum.Count())),
+                    (1, 3) => HardQuestionsSum.ElementAt(_random.Next(HardQuestionsSum.Count())),
+                    (2, 1) => EasyQuestionsSubtraction.ElementAt(_random.Next(EasyQuestionsSubtraction.Count())),
+                    (2, 2) => MediumQuestionsSubtraction.ElementAt(_random.Next(MediumQuestionsSubtraction.Count())),
+                    (2, 3) => HardQuestionsSubtraction.ElementAt(_random.Next(HardQuestionsSubtraction.Count())),
+                    (3, 1) => EasyQuestionsMultiplication.ElementAt(_random.Next(EasyQuestionsMultiplication.Count())),
+                    (3, 2) => MediumQuestionsMultiplication.ElementAt(_random.Next(MediumQuestionsMultiplication.Count())),
+                    (3, 3) => HardQuestionsMultiplication.ElementAt(_random.Next(HardQuestionsMultiplication.Count())),
+                    (4, 1) => EasyQuestionsDivision.ElementAt(_random.Next(EasyQuestionsDivision.Count())),
+                    (4, 2) => MediumQuestionsDivision.ElementAt(_random.Next(MediumQuestionsDivision.Count())),
+                    (4, 3) => HardQuestionsSum.ElementAt(_random.Next(HardQuestionsSum.Count())),
+                });
+            }
+            return _questions;
+        }
     }
 }

@@ -56,6 +56,31 @@ namespace Math_Game.Application
                 (Difficulty.Hard, MenuOptions.Division) => QuestionsRepository.MediumQuestionsDivision
                     .ElementAt(_random
                     .Next(QuestionsRepository.MediumQuestionsDivision.Count())),
+                (Difficulty.Random, MenuOptions.Sum) => QuestionsRepository.RandomDifficultySumQuestions()
+                    .ElementAt(_random
+                    .Next(QuestionsRepository.RandomDifficultySumQuestions().Count())),
+                (Difficulty.Random, MenuOptions.Subtraction) => QuestionsRepository.RandomDifficultySubtractionQuestions()
+                    .ElementAt(_random
+                    .Next(QuestionsRepository.RandomDifficultySubtractionQuestions().Count())),
+                (Difficulty.Random, MenuOptions.Multiplication) => QuestionsRepository.RandomDifficultyMultiplicationQuestions()
+                    .ElementAt(_random
+                    .Next(QuestionsRepository.RandomDifficultyMultiplicationQuestions().Count())),
+                (Difficulty.Random, MenuOptions.Division) => QuestionsRepository.RandomDifficultyDivisionQuestions()
+                    .ElementAt(_random
+                    .Next(QuestionsRepository.RandomDifficultyDivisionQuestions().Count())),
+                (Difficulty.Easy, MenuOptions.Mixed) => QuestionsRepository.EasyDifficultyMixedQuestions()
+                    .ElementAt(_random
+                    .Next(QuestionsRepository.EasyDifficultyMixedQuestions().Count())),
+                (Difficulty.Medium, MenuOptions.Mixed) => QuestionsRepository.MediumDifficultyMixedQuestions()
+                    .ElementAt(_random
+                    .Next(QuestionsRepository.MediumDifficultyMixedQuestions().Count())),
+                (Difficulty.Hard, MenuOptions.Mixed) => QuestionsRepository.HardDifficultyMixedQuestions()
+                    .ElementAt(_random
+                    .Next(QuestionsRepository.HardDifficultyMixedQuestions().Count())),
+                (Difficulty.Random, MenuOptions.Mixed) => QuestionsRepository.RandomDifficultyMixedQuestions()
+                .ElementAt(_random
+                .Next(QuestionsRepository.RandomDifficultyMixedQuestions().Count())),
+
             };
         }
     }

@@ -42,7 +42,7 @@ namespace Math_Game.Application
             } while (_userChoiceMenu == MenuOptions.Records);
             _userInteractor.Clear();
             _quiz.StartGame(_userChoiceDifficulty, _userChoiceMenu);
-            _gameResults.Results.Add(_quiz.Points);
+            _gameResults.Results.Add((_quiz.Points, _quiz.Time));
             _isGameFinished = !_userInteractor.PromptForGameEnd();
         }
     }

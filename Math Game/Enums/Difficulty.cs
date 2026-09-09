@@ -10,6 +10,7 @@ namespace Math_Game.Enums
     {
         Easy,
         Medium,
-        Hard
+        Hard,
+        Random
     }
 }

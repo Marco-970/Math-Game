@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 [assembly: InternalsVisibleTo("MathGameTests")]
 
 namespace Math_Game.Application
@@ -15,6 +16,7 @@ namespace Math_Game.Application
         IUserInteractor _userInteractor;
         QuestionGenerator _questionGenerator;
         public int Points { get; private set; }
+        public double Time { get; private set; }
         public Quiz(IUserInteractor userInteractor, QuestionGenerator questionGenerator)
         {
             _userInteractor = userInteractor;
@@ -28,6 +30,7 @@ namespace Math_Game.Application
                 _questions.Add(_questionGenerator.Generate(difficulty, quizMode));
             }
             int _points = 0;
+            var _time = Stopwatch.StartNew();
             foreach(var _question in _questions)
             {
                 _userInteractor.DisplayMessage(_question.Text);
@@ -38,9 +41,11 @@ namespace Math_Game.Application
                 }
                 else { _userInteractor.DisplayIncorrect(_question.Result); }
             }
+            _time.Stop();
+            Time = (int)_time.Elapsed.TotalSeconds;
             Points = _points;
             _userInteractor.DisplayMessage("");
-            _userInteractor.DisplayMessage($"Final result: {Points} points.");
+            _userInteractor.DisplayMessage($"Final result: {Points} points. Time: {Time} seconds");
         }
     }
 }
