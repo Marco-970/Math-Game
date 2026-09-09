@@ -69,9 +69,9 @@ namespace Math_Game.Tools
         
         public string PromptForAnswer()
         {
-            string _userInput;
-            _console.WriteOnSameLine($"|        Your answer: {_userInput = _console.GetUserInput()}       |");
-            return _userInput;
+            string userInput;
+            _console.WriteOnSameLine($"|        Your answer: {userInput = _console.GetUserInput()}       |");
+            return userInput;
         }
 
         public void DisplayCorrect()
