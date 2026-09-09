@@ -1,5 +1,6 @@
 ﻿using Math_Game.Application;
 using Math_Game.Tools;
+using Tools;
 
 namespace Math_Game
 {
@@ -8,9 +9,9 @@ namespace Math_Game
         static void Main(string[] args)
         {
             IRandom _random = new RandomWrapper(new Random());
-            IUserInteractor _userInteractor = new ConsoleUserInteractor(new Validator());
-            GameResults _gameResults = new GameResults();
-            App app = new App(_userInteractor, new Quiz(_userInteractor, new QuestionGenerator(_random)), _gameResults);
+            MathQuizUserInteractor _userInteractor = new(new Validator(), new ConsoleUserInteractor());
+            GameResults _gameResults = new();
+            App app = new(_userInteractor, new Quiz(_userInteractor, new QuestionGenerator(_random)), _gameResults);
 
             app.Run();
             bool _isGameFinished = app.IsGameFinished;
