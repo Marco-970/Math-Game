@@ -1,12 +1,11 @@
-﻿namespace Math_Game.Enums
+﻿namespace Math_Game.Enums;
+
+public enum MenuOptions
 {
-    public enum MenuOptions
-    {
-        Sum,
-        Subtraction,
-        Multiplication,
-        Division,
-        Mixed,
-        Records
-    }
+    Sum,
+    Subtraction,
+    Multiplication,
+    Division,
+    Mixed,
+    Records
 }

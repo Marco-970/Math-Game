@@ -2,11 +2,10 @@
 using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("MathGameTests")]
 
-namespace Math_Game.Tools
+namespace Math_Game.Tools;
+
+internal class Validator
 {
-    internal class Validator
-    {
-        public bool ValidateMenuOption(string input) => Enum.GetNames<MenuOptions>().Contains(input);
-        public bool ValidateDifficulty(string input) => Enum.GetNames<Difficulty>().Contains(input);
-    }
+    public bool ValidateMenuOption(string input) => Enum.GetNames<MenuOptions>().Contains(input);
+    public bool ValidateDifficulty(string input) => Enum.GetNames<Difficulty>().Contains(input);
 }

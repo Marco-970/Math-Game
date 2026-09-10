@@ -9,43 +9,42 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 [assembly: InternalsVisibleTo("MathGameTests")]
 
-namespace Math_Game.Application
+namespace Math_Game.Application;
+
+internal class Quiz
 {
-    internal class Quiz
+    IMathQuizUserInteractor _userInteractor;
+    QuestionGenerator _questionGenerator;
+    public int Points { get; private set; }
+    public double Time { get; private set; }
+    public Quiz(IMathQuizUserInteractor userInteractor, QuestionGenerator questionGenerator)
     {
-        IMathQuizUserInteractor _userInteractor;
-        QuestionGenerator _questionGenerator;
-        public int Points { get; private set; }
-        public double Time { get; private set; }
-        public Quiz(IMathQuizUserInteractor userInteractor, QuestionGenerator questionGenerator)
+        _userInteractor = userInteractor;
+        _questionGenerator = questionGenerator;
+    }
+    public void StartGame(Difficulty difficulty, MenuOptions quizMode)
+    {
+        List<Question> _questions = new List<Question>();
+        for(int i = 1; i <= 5; i++)
         {
-            _userInteractor = userInteractor;
-            _questionGenerator = questionGenerator;
+            _questions.Add(_questionGenerator.Generate(difficulty, quizMode));
         }
-        public void StartGame(Difficulty difficulty, MenuOptions quizMode)
+        int _points = 0;
+        var _time = Stopwatch.StartNew();
+        foreach(var _question in _questions)
         {
-            List<Question> _questions = new List<Question>();
-            for(int i = 1; i <= 5; i++)
+            _userInteractor.DisplayMessage(_question.Text);
+            if(_userInteractor.PromptForAnswer() == _question.Result)
             {
-                _questions.Add(_questionGenerator.Generate(difficulty, quizMode));
+                _points++;
+                _userInteractor.DisplayCorrect();
             }
-            int _points = 0;
-            var _time = Stopwatch.StartNew();
-            foreach(var _question in _questions)
-            {
-                _userInteractor.DisplayMessage(_question.Text);
-                if(_userInteractor.PromptForAnswer() == _question.Result)
-                {
-                    _points++;
-                    _userInteractor.DisplayCorrect();
-                }
-                else { _userInteractor.DisplayIncorrect(_question.Result); }
-            }
-            _time.Stop();
-            Time = (int)_time.Elapsed.TotalSeconds;
-            Points = _points;
-            _userInteractor.DisplayMessage("");
-            _userInteractor.DisplayMessage($"Final result: {Points} points. Time: {Time} seconds");
+            else { _userInteractor.DisplayIncorrect(_question.Result); }
         }
+        _time.Stop();
+        Time = (int)_time.Elapsed.TotalSeconds;
+        Points = _points;
+        _userInteractor.DisplayMessage("");
+        _userInteractor.DisplayMessage($"Final result: {Points} points. Time: {Time} seconds");
     }
 }

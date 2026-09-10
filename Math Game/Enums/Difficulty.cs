@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Math_Game.Enums
+namespace Math_Game.Enums;
+
+internal enum Difficulty
 {
-    internal enum Difficulty
-    {
-        Easy,
-        Medium,
-        Hard,
-        Random
-    }
+    Easy,
+    Medium,
+    Hard,
+    Random
 }

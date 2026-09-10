@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Math_Game.Tools
+namespace Math_Game.Tools;
+
+internal interface IRandom
 {
-    internal interface IRandom
-    {
-        public int Next(int maxValue);
-    }
+    public int Next(int maxValue);
 }
