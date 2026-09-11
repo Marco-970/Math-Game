@@ -15,6 +15,7 @@ internal class Quiz
 {
     IMathQuizUserInteractor _userInteractor;
     QuestionGenerator _questionGenerator;
+    public List<Question> Questions = new List<Question>();
     public int Points { get; private set; }
     public double Time { get; private set; }
     public Quiz(IMathQuizUserInteractor userInteractor, QuestionGenerator questionGenerator)
@@ -24,14 +25,13 @@ internal class Quiz
     }
     public void StartGame(Difficulty difficulty, MenuOptions quizMode)
     {
-        List<Question> _questions = new List<Question>();
         for(int i = 1; i <= 5; i++)
         {
-            _questions.Add(_questionGenerator.Generate(difficulty, quizMode));
+            Questions.Add(_questionGenerator.Generate(difficulty, quizMode));
         }
         int _points = 0;
         var _time = Stopwatch.StartNew();
-        foreach(var _question in _questions)
+        foreach(var _question in Questions)
         {
             _userInteractor.DisplayMessage(_question.Text);
             if(_userInteractor.PromptForAnswer() == _question.Result)
